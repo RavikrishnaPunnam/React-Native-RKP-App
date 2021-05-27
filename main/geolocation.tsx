@@ -50,7 +50,7 @@ export default function Geolocation({navigation}: {navigation: any}){
       filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} 
       debounce={200}
       query={{
-        key: 'AIzaSyCm80KxxrkDY5xzJrTcckqLpcEkHeCc7_M',
+        key: 'your key here',
         language: 'en',
         // types:'(cities)',
          location:"{17.3656018,78.3837569}"
