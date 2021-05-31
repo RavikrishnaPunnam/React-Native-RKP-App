@@ -1,13 +1,29 @@
 
 import React, { Component } from 'react';
-import { View, Image, StyleSheet, TouchableOpacity,FlatList, TouchableWithoutFeedback, Animated, Text, Alert } from 'react-native';
+import { View, Image, StyleSheet, TouchableOpacity,Picker,Button,FlatList, TouchableWithoutFeedback, Animated, Text, Alert } from 'react-native';
 import Cards from './main/Cardcomponent';
 import Topbar from './main/Topbar';
 import { useState,useEffect } from 'react';
-
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import {GlobalStyles} from './Globals/globalStyles';
 
 export default function BottomNavigator({navigation}: {navigation: any}) {
     { 
+        const [pickerVal,setPicker]= useState();
+        const [search,setSearch]= useState([]);
+        const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+        const showDatePicker = () => {
+            setDatePickerVisibility(true);
+          };
+        
+          const hideDatePicker = () => {
+            setDatePickerVisibility(false);
+          };
+          const handleConfirm = (date) => {
+            setSearch(date);
+            console.log("Data picked is   " , search);
+            hideDatePicker();
+          };
        
         return (
             <View style={{
@@ -16,11 +32,30 @@ export default function BottomNavigator({navigation}: {navigation: any}) {
                 backgroundColor: 'white'
 
             }}>
-                {/* <Text style={{marginTop:30,fontStyle:'normal',color:'black',marginLeft:30}}>Hello Mamba123</Text> */}
                 <Topbar  {...navigation}/>
                 {/* <Cards/> */}
-               
-            
+                <Picker
+                selectedValue={pickerVal}
+                onValueChange={(itemValue,itemIndex)=>setPicker(itemValue)}
+                >
+                    <Picker.Item label="RKP" value="Developer"/>
+                    <Picker.Item label="Nihith" value="RoleBased"/>
+                    <Picker.Item label="Shiva" value="Tester"/>
+                    <Picker.Item  label="Advith" value="Consultant"/>
+
+                    </Picker>
+                    <Button  title="Show Date Picker" onPress={showDatePicker} 
+                    
+                    />
+
+      <DateTimePickerModal
+        isVisible={isDatePickerVisible}
+        mode="date"
+        onConfirm={handleConfirm}
+        onCancel={hideDatePicker}
+      />
+        <Text style={GlobalStyles.actionBtn}>Hello Mamba</Text>
+
                 <View style={{
                     position: 'absolute',
                     alignSelf: 'center',

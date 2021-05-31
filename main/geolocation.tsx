@@ -12,7 +12,9 @@ export default function Geolocation({navigation}: {navigation: any}){
     // Retrieving the data from Redux 
     const usestateData = useSelector(state => state);
     const mylocationData = usestateData;
-    console.log("Hello Data" , mylocationData.location.coords);
+    console.log("Location Data" , mylocationData);
+
+    console.log("Coords Data" , mylocationData.location.coords);
 
     return(
         <View>
@@ -50,7 +52,7 @@ export default function Geolocation({navigation}: {navigation: any}){
       filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} 
       debounce={200}
       query={{
-        key: 'your key here',
+        key: 'AIzaSyCm80KxxrkDY5xzJrTcckqLpcEkHeCc7_M',
         language: 'en',
         // types:'(cities)',
          location:"{17.3656018,78.3837569}"
